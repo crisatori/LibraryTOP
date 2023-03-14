@@ -1,33 +1,4 @@
-html {
-	padding: 0;
-	margin: 0;
-}
-
-.container {
-	height: 100vh;
-	width: 100vw;
-	display: grid;
-	grid-template-columns: 200px 1fr;
-}
-
-.stand {
-	height: 100%;
-	width: 100%;
-	background-color: rgb(206, 118, 70);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-.main-library {
-	height: 100%;
-	width: 100%;
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-	background-color: rgba(125, 39, 24, 0.3);
-	padding: 10px;
-	gap: 5px;
-}
-.cardi {
+/* .cardi {
 	width: 175px;
 	height: 250px;
 	border-radius: 25px;
@@ -35,10 +6,64 @@ html {
 	background-color: rgba(206, 118, 70, 0.5);
 	display: grid;
 	grid-template-rows: 1fr 1fr 1fr;
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+* {
+	font-family: "Roboto", sans-serif;
+	box-sizing: border-box;
 }
-.cardi > div {
+body {
+	height: 100vh;
+	width: 100vw;
+}
+h1 {
+	text-align: center;
+}
+#container {
+	height: 100vh;
+	width: 100vw;
+	display: grid;
+	grid-template-columns: 250px 1fr;
+}
+#container > * {
+	/*Esto es debug*/
+	border: 2px solid green;
+}
+
+#main {
+	height: 100vh;
+	width: 100vw;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+	grid-auto-rows: 310px;
+	justify-items: center;
 	padding: 10px;
+	gap: 10px;
+}
+.book-card {
+	height: 300px;
+	width: 200px;
+	border-radius: 20px 40px;
+	border: 5px solid rgb(125, 39, 24);
+	background-color: rgba(206, 118, 70, 0.39);
+	padding: 5px;
 	display: flex;
-	justify-content: center;
-	align-items: center;
+	flex-direction: column;
+	justify-content: flex-start;
+	overflow-wrap: break-word;
+}
+.book-title,
+.book-author,
+.book-pages {
+	display: flex;
+	gap: 5px;
+}
+.book-card > h4 {
+	text-align: center;
+}
+.title,
+.author,
+.pages {
+	color: rgba(0, 0, 0, 0.78);
 }
