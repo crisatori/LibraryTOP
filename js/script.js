@@ -1,7 +1,7 @@
 const addBookBtn = document.getElementById("add-book-btn");
 const form = document.getElementById("book-form");
 const main = document.getElementById("main");
-const card = document.getElementsByClassName("book-card");
+
 const myLibrary = [];
 
 function Book(title, author, pages) {
@@ -20,7 +20,29 @@ form.addEventListener("submit", function (event) {
 		myLibrary.push(book);
 	}
 	addBookToLibrary();
+	displayCollection(myLibrary);
 	event.preventDefault();
 });
 
-function displayBooks(collection) {}
+function displayCollection(collection) {
+	const nmbr = collection.length + 1;
+	for (let i = 0; i < collection.length; i++) {
+		const card = document.querySelector(".book-card");
+		const clone = card.cloneNode(true);
+		const clnTitle = clone.querySelector(".title");
+		const clnAuthor = clone.querySelector(".author");
+		const clnPages = clone.querySelector(".pages");
+		clnTitle.textContent = myLibrary[nmbr].title;
+		clnAuthor.textContent = myLibrary[nmbr].author;
+		clnPages.textContent = myLibrary[nmbr].pages;
+		main.appendChild(clone);
+	}
+}
+
+// addBookBtn.addEventListener("click", function () {
+// 	if (form.style.display !== "inline") {
+// 		form.style.display = "inline";
+// 	} else {
+// 		form.style.display = "none";
+// 	}
+// });

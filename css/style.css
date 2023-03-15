@@ -42,6 +42,7 @@ h1 {
 	position: relative;
 }
 .book-card {
+	display: none;
 	height: 300px;
 	width: 200px;
 	border-radius: 20px 40px;
