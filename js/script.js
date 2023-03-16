@@ -1,8 +1,14 @@
-const addBookBtn = document.getElementById("add-book-btn");
-const form = document.getElementById("book-form");
+const addBookBtn = document.querySelector("#add-book-btn");
+const form = document.querySelector("#book-form");
 const main = document.getElementById("main");
 
-const myLibrary = [];
+const myLibrary = [
+	{
+		title: "The Little Prince",
+		author: "Antoine de Saint-Exupéry",
+		pages: "250",
+	},
+];
 
 function Book(title, author, pages) {
 	this.title = title;
@@ -10,39 +16,34 @@ function Book(title, author, pages) {
 	this.pages = pages;
 }
 
+function addBookToLibrary(collection) {
+	const title = form.querySelector("#book-title").value;
+	const author = form.querySelector("#book-author").value;
+	const pages = form.querySelector("#book-pages").value;
+	const newBook = new Book(title, author, pages);
+	collection.push(newBook);
+}
+
 form.addEventListener("submit", function (event) {
-	const arrayForm = [...form];
-	const thistitle = arrayForm[0].value;
-	const thisauthor = arrayForm[1].value;
-	const thispages = arrayForm[2].value;
-	function addBookToLibrary() {
-		const book = new Book(thistitle, thisauthor, thispages);
-		myLibrary.push(book);
-	}
-	addBookToLibrary();
-	displayCollection(myLibrary);
+	addBookToLibrary(myLibrary);
 	event.preventDefault();
+	const card = document.querySelector(".book-card");
+	const clone = card.cloneNode(true);
+	clone.querySelector(".title").textContent = myLibrary[myLibrary.length - 1].title;
+	clone.querySelector(".author").textContent = myLibrary[myLibrary.length - 1].author;
+	clone.querySelector(".pages").textContent = myLibrary[myLibrary.length - 1].pages;
+	main.appendChild(clone);
+	DisplayIt(form);
 });
 
-function displayCollection(collection) {
-	const nmbr = collection.length + 1;
-	for (let i = 0; i < collection.length; i++) {
-		const card = document.querySelector(".book-card");
-		const clone = card.cloneNode(true);
-		const clnTitle = clone.querySelector(".title");
-		const clnAuthor = clone.querySelector(".author");
-		const clnPages = clone.querySelector(".pages");
-		clnTitle.textContent = myLibrary[nmbr].title;
-		clnAuthor.textContent = myLibrary[nmbr].author;
-		clnPages.textContent = myLibrary[nmbr].pages;
-		main.appendChild(clone);
+function DisplayIt(element) {
+	if (element.style.display === "none") {
+		element.style.display = "inline";
+	} else {
+		element.style.display = "none";
 	}
 }
 
-// addBookBtn.addEventListener("click", function () {
-// 	if (form.style.display !== "inline") {
-// 		form.style.display = "inline";
-// 	} else {
-// 		form.style.display = "none";
-// 	}
-// });
+addBookBtn.addEventListener("click", function () {
+	DisplayIt(form);
+});

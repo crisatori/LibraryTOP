@@ -1,13 +1,3 @@
-/* .cardi {
-	width: 175px;
-	height: 250px;
-	border-radius: 25px;
-	border: 5px solid rgb(125, 39, 24);
-	background-color: rgba(206, 118, 70, 0.5);
-	display: grid;
-	grid-template-rows: 1fr 1fr 1fr;
- */
-
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 * {
 	font-family: "Roboto", sans-serif;
@@ -69,19 +59,18 @@ h1 {
 	color: rgba(0, 0, 0, 0.78);
 }
 #add-book-btn {
-	width: 100px;
-	height: 100px;
+	width: 50px;
+	height: 50px;
 	background-color: red;
 	border-radius: 100%;
 	font-size: large;
 	position: absolute;
 	top: 0;
-	left: 0;
+	right: 0;
 	/*Wll add more style to it later*/
 }
 /*form*/
 #book-form {
-	display: inline;
 	position: absolute;
 	top: 0;
 	right: 50%;
@@ -111,6 +100,7 @@ h1 {
 
 #stand {
 	display: flex;
+	position: relative;
 }
 button[type="submit"] {
 	width: 100px;
