@@ -43,6 +43,7 @@ h1 {
 	flex-direction: column;
 	justify-content: flex-start;
 	overflow-wrap: break-word;
+	position: relative;
 }
 .book-title,
 .book-author,
@@ -106,4 +107,20 @@ button[type="submit"] {
 	width: 100px;
 	height: 50px;
 	border-radius: 10px;
+}
+
+.remove-book-btn {
+	width: 30px;
+	height: 30px;
+	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+.remove-book-btn img {
+	width: 100%;
+	height: 100%;
 }
