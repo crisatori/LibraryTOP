@@ -4,17 +4,18 @@ const form = document.querySelector("#book-form");
 const main = document.getElementById("main");
 const removeBook = document.querySelectorAll(".remove-book-btn");
 const allBook = document.querySelectorAll(".book-card");
+const allRemover = document.querySelectorAll(".remove-book-btn");
 const myLibrary = [];
 
 function Book(title, author, pages, id) {
 	this.title = title;
 	this.author = author;
 	this.pages = pages;
-	this.id = id;
+	// this.id = id;
 }
 
 function addBookToLibrary() {
-	// do stuff here
+	createCard(myLibrary[myLibrary.length - 1]);
 }
 
 // const titleFromForm = form.querySelector("#book-title").value;
@@ -25,14 +26,17 @@ form.addEventListener("submit", function (event) {
 	const titleFromForm = form.querySelector("#book-title").value;
 	const authorFromForm = form.querySelector("#book-author").value;
 	const pagesFromForm = form.querySelector("#book-pages").value;
-	createCard(titleFromForm, authorFromForm, pagesFromForm);
+	// const id = Math.floor(Math.random() * 1000);
+	const newBook = new Book(titleFromForm, authorFromForm, pagesFromForm);
+	myLibrary.push(newBook);
 	event.preventDefault();
+	addBookToLibrary();
 });
 
-function createCard(titleFromForm, authorFromForm, pagesFromForm) {
-	const id = Math.floor(Math.random() * 1000);
-	const newBookData = new Book(titleFromForm, authorFromForm, pagesFromForm, id);
-	myLibrary.push(newBookData);
+function createCard(collection) {
+	// const id = Math.floor(Math.random() * 1000);
+	// const newBookData = new Book(titleFromForm, authorFromForm, pagesFromForm, id);
+	// myLibrary.push(newBookData);
 	const newBookCard = document.createElement("div");
 	const divBookTitle = document.createElement("div");
 	const divBookAuthor = document.createElement("div");
@@ -45,7 +49,7 @@ function createCard(titleFromForm, authorFromForm, pagesFromForm) {
 	const pagesH4 = document.createElement("h4");
 	const removerBtn = document.createElement("button");
 	newBookCard.className = "book-card";
-	newBookCard.id = `${id}`;
+	// newBookCard.id = `${id}`;
 	divBookTitle.className = "book-title";
 	divBookAuthor.className = "book-author";
 	divBookPages.className = "book-pages";
@@ -55,7 +59,8 @@ function createCard(titleFromForm, authorFromForm, pagesFromForm) {
 	authorH4.className = "author";
 	pagesIntroH4.className = "pages-intro";
 	pagesH4.className = "pages";
-	removerBtn.classList.add("remove-book-btn", `${id}`);
+	removerBtn.classList.add("remove-book-btn");
+	// , `${id}`
 	main.appendChild(newBookCard);
 	newBookCard.appendChild(divBookTitle);
 	newBookCard.appendChild(divBookAuthor);
@@ -70,10 +75,9 @@ function createCard(titleFromForm, authorFromForm, pagesFromForm) {
 	titleIntroH4.textContent = "Title:";
 	authorIntroH4.textContent = "Author:";
 	pagesIntroH4.textContent = "No. Pages:";
-	titleH4.textContent = titleFromForm;
-	authorH4.textContent = authorFromForm;
-	pagesH4.textContent = pagesFromForm;
-	updater();
+	titleH4.textContent = collection.title;
+	authorH4.textContent = collection.author;
+	pagesH4.textContent = collection.pages;
 }
 
 addBookBtn.addEventListener("click", function () {
@@ -83,8 +87,3 @@ addBookBtn.addEventListener("click", function () {
 		form.style.display = "none";
 	}
 });
-
-function updater() {
-	const all = document.querySelectorAll(".book-card");
-	console.log(all.length);
-}
