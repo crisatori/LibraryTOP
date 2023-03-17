@@ -1,14 +1,16 @@
+// const removeBook = document.querySelector(".remove-book-btn");
 const addBookBtn = document.querySelector("#add-book-btn");
 const form = document.querySelector("#book-form");
 const main = document.getElementById("main");
-// const removeBook = document.querySelector(".remove-book-btn");
-
+const removeBook = document.querySelectorAll(".remove-book-btn");
+const allBook = document.querySelectorAll(".book-card");
 const myLibrary = [];
 
-function Book(title, author, pages) {
+function Book(title, author, pages, id) {
 	this.title = title;
 	this.author = author;
 	this.pages = pages;
+	this.id = id;
 }
 
 function addBookToLibrary() {
@@ -28,7 +30,8 @@ form.addEventListener("submit", function (event) {
 });
 
 function createCard(titleFromForm, authorFromForm, pagesFromForm) {
-	const newBookData = new Book(titleFromForm, authorFromForm, pagesFromForm);
+	const id = Math.floor(Math.random() * 1000);
+	const newBookData = new Book(titleFromForm, authorFromForm, pagesFromForm, id);
 	myLibrary.push(newBookData);
 	const newBookCard = document.createElement("div");
 	const divBookTitle = document.createElement("div");
@@ -42,6 +45,7 @@ function createCard(titleFromForm, authorFromForm, pagesFromForm) {
 	const pagesH4 = document.createElement("h4");
 	const removerBtn = document.createElement("button");
 	newBookCard.className = "book-card";
+	newBookCard.id = `${id}`;
 	divBookTitle.className = "book-title";
 	divBookAuthor.className = "book-author";
 	divBookPages.className = "book-pages";
@@ -51,7 +55,7 @@ function createCard(titleFromForm, authorFromForm, pagesFromForm) {
 	authorH4.className = "author";
 	pagesIntroH4.className = "pages-intro";
 	pagesH4.className = "pages";
-	removerBtn.className = "remove-book-btn";
+	removerBtn.classList.add("remove-book-btn", `${id}`);
 	main.appendChild(newBookCard);
 	newBookCard.appendChild(divBookTitle);
 	newBookCard.appendChild(divBookAuthor);
@@ -69,6 +73,7 @@ function createCard(titleFromForm, authorFromForm, pagesFromForm) {
 	titleH4.textContent = titleFromForm;
 	authorH4.textContent = authorFromForm;
 	pagesH4.textContent = pagesFromForm;
+	updater();
 }
 
 addBookBtn.addEventListener("click", function () {
@@ -78,3 +83,8 @@ addBookBtn.addEventListener("click", function () {
 		form.style.display = "none";
 	}
 });
+
+function updater() {
+	const all = document.querySelectorAll(".book-card");
+	console.log(all.length);
+}
