@@ -32,7 +32,7 @@ h1 {
 	position: relative;
 }
 .book-card {
-	display: none;
+	display: inline;
 	height: 300px;
 	width: 200px;
 	border-radius: 20px 40px;
@@ -74,7 +74,7 @@ h1 {
 #book-form {
 	position: absolute;
 	top: 0;
-	right: 50%;
+	right: 50px;
 	/* margin: auto; */
 	width: 300px;
 	height: 500px;
