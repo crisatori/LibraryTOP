@@ -1,14 +1,21 @@
 const addBookBtn = document.querySelector("#add-book-btn");
 const form = document.querySelector("#book-form");
 const main = document.getElementById("main");
-// const allRemovesBtns = document.querySelectorAll(".remove-book-btn");
 const myLibrary = [];
 
-function Book(title, author, pages, id) {
+function Book(title, author, pages, id, readStatus) {
 	this.title = title;
 	this.author = author;
 	this.pages = pages;
 	this.id = id;
+	this.readStatus = readStatus;
+	this.changeReadStatus = function () {
+		if (this.readStatus === "READ") {
+			this.readStatus = "NOT READ";
+		} else {
+			this.readStatus = "READ";
+		}
+	};
 }
 
 function clear() {
@@ -30,6 +37,9 @@ function addBookToLibrary() {
 		const pagesIntroH4 = document.createElement("h4");
 		const pagesH4 = document.createElement("h4");
 		const removerBtn = document.createElement("button");
+		const readStatusBtn = document.createElement("button");
+		const trash = document.createElement("img");
+		trash.src = "./media/trash-bin.png";
 		newBookCard.classList.add("book-card", `${i}`);
 		newBookCard.id = `${i}`;
 		divBookTitle.className = "book-title";
@@ -42,25 +52,30 @@ function addBookToLibrary() {
 		pagesIntroH4.className = "pages-intro";
 		pagesH4.className = "pages";
 		removerBtn.classList.add("remove-book-btn");
+		readStatusBtn.className = "read-status";
+		readStatusBtn.id = `${i}`;
+		trash.id = "trash";
 		// , `${id}`
 		main.appendChild(newBookCard);
 		newBookCard.appendChild(divBookTitle);
 		newBookCard.appendChild(divBookAuthor);
 		newBookCard.appendChild(divBookPages);
 		newBookCard.appendChild(removerBtn);
+		newBookCard.appendChild(readStatusBtn);
 		divBookTitle.appendChild(titleIntroH4);
 		divBookTitle.appendChild(titleH4);
 		divBookAuthor.appendChild(authorIntroH4);
 		divBookAuthor.appendChild(authorH4);
 		divBookPages.appendChild(pagesIntroH4);
 		divBookPages.appendChild(pagesH4);
+		removerBtn.appendChild(trash);
 		titleIntroH4.textContent = "Title:";
 		authorIntroH4.textContent = "Author:";
 		pagesIntroH4.textContent = "No. Pages:";
 		titleH4.textContent = myLibrary[i].title;
 		authorH4.textContent = myLibrary[i].author;
 		pagesH4.textContent = myLibrary[i].pages;
-		// const allRemovesBtns = main.querySelectorAll(".remove-book-btn");
+		readStatusBtn.textContent = myLibrary[i].readStatus;
 		Updater();
 	}
 }
@@ -69,9 +84,8 @@ form.addEventListener("submit", function (event) {
 	const titleFromForm = form.querySelector("#book-title").value;
 	const authorFromForm = form.querySelector("#book-author").value;
 	const pagesFromForm = form.querySelector("#book-pages").value;
-	// const id = Math.floor(Math.random() * 1000);
 	const id = (myLibrary.length - 1) + 1;
-	const newBook = new Book(titleFromForm, authorFromForm, pagesFromForm, id);
+	const newBook = new Book(titleFromForm, authorFromForm, pagesFromForm, id, "READ");
 	myLibrary.push(newBook);
 	event.preventDefault();
 	addBookToLibrary();
@@ -103,4 +117,30 @@ function Updater() {
 			main.removeChild(thisOne);
 		});
 	});
+
+	const readBtns = document.querySelectorAll(".read-status");
+	readBtns.forEach((btn) => {
+		btn.style.backgroundColor = "green";
+		btn.addEventListener("click", function () {
+			myLibrary[btn.id].changeReadStatus();
+			btn.textContent = `${myLibrary[btn.id].readStatus}`;
+			if (myLibrary[btn.id].readStatus === "NOT READ") {
+				btn.style.backgroundColor = "red";
+			} else {
+				btn.style.backgroundColor = "green";
+			}
+		});
+	});
+	// statsUpdater();
 }
+
+// const addedBooksStats = document.querySelector("#added-books");
+// const readBooksStats = document.querySelector("#read-books");
+// const notReadBooksStats = document.querySelector("#not-read-books");
+// function statsUpdater() {
+// 	addedBooksStats.textContent = myLibrary.length;
+// 	const notRead = myLibrary.filter(readBook => readBook.readStatus === "NOT READ");
+// 	notReadBooksStats.textContent = notRead.length;
+// 	const readBooks = myLibrary.filter(books => books.readStatus === "READ");
+// 	readBooksStats.textContent = readBooks.length;
+// }
