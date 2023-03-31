@@ -84,7 +84,7 @@ form.addEventListener("submit", function (event) {
 	const titleFromForm = form.querySelector("#book-title").value;
 	const authorFromForm = form.querySelector("#book-author").value;
 	const pagesFromForm = form.querySelector("#book-pages").value;
-	const id = (myLibrary.length - 1) + 1;
+	const id = myLibrary.length - 1 + 1;
 	const newBook = new Book(titleFromForm, authorFromForm, pagesFromForm, id, "READ");
 	myLibrary.push(newBook);
 	event.preventDefault();
@@ -109,7 +109,7 @@ function displayHideForm() {
 
 function Updater() {
 	const allRmvrs = document.querySelectorAll(".remove-book-btn");
-	allRmvrs.forEach(btn => {
+	allRmvrs.forEach((btn) => {
 		btn.addEventListener("click", function () {
 			const thisOne = this.parentElement;
 			const dead = myLibrary.indexOf(thisOne.id);
@@ -133,14 +133,3 @@ function Updater() {
 	});
 	// statsUpdater();
 }
-
-// const addedBooksStats = document.querySelector("#added-books");
-// const readBooksStats = document.querySelector("#read-books");
-// const notReadBooksStats = document.querySelector("#not-read-books");
-// function statsUpdater() {
-// 	addedBooksStats.textContent = myLibrary.length;
-// 	const notRead = myLibrary.filter(readBook => readBook.readStatus === "NOT READ");
-// 	notReadBooksStats.textContent = notRead.length;
-// 	const readBooks = myLibrary.filter(books => books.readStatus === "READ");
-// 	readBooksStats.textContent = readBooks.length;
-// }
