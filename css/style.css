@@ -59,6 +59,7 @@ main {
   padding-top: 20px;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .book-card div {
@@ -107,4 +108,11 @@ form input {
 form > button {
   width: 100px;
   margin: 50px 75px; /*! arreglar mas tarde*/
+}
+
+.book-card img {
+  width: 25px;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
