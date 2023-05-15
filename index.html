@@ -16,24 +16,41 @@
     </header>
     <main>
       <section class="stats">
-        <button type="button">*</button>
+        <button id="addBookBtn" type="button">*</button>
       </section>
       <section class="book-shelf">
-        <div class="book-card">
+        <form action="#">
+          <h2>Add a book</h2>
           <div>
-            <h2 class="book-title">Title:</h2>
-            <span class="title">El Principito</span>
+            <label for="title-form">Title:</label>
+            <input id="title-form" type="text" />
           </div>
           <div>
-            <h2 class="book-title">Author:</h2>
-            <span class="author">Antoine S. E.</span>
+            <label for="author-form">Author:</label>
+            <input id="author-form" type="text" />
           </div>
           <div>
-            <h2 class="book-title">No. Pages:</h2>
-            <span class="no-pages">100</span>
+            <label for="pages-form">No. Pages:</label>
+            <input id="pages-form" type="number" min="10" />
           </div>
-        </div>
+          <button id="submit-btn" type="submit">Add it</button>
+        </form>
       </section>
     </main>
   </body>
 </html>
+
+<!-- <div class="book-card">
+    <div>
+      <h2 class="book-title">Title:</h2>
+      <span class="title">El Principito</span>
+    </div>
+    <div>
+      <h2 class="book-author">Author:</h2>
+      <span class="author">Antoine S. E.</span>
+    </div>
+    <div>
+      <h2 class="book-no-pages">No. Pages:</h2>
+      <span class="no-pages">100</span>
+    </div>
+  </div> -->

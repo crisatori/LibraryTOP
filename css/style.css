@@ -46,6 +46,7 @@ main {
   column-gap: 20px;
   row-gap: 20px;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /*300px*/
+  position: relative;
 }
 
 .book-card {
@@ -63,10 +64,47 @@ main {
 .book-card div {
   display: flex;
   flex-direction: row;
+  align-items: flex-end;
   gap: 5px;
   margin-bottom: 5px;
   font-size: 1.9rem;
 }
-.book-card h2{
-  display: inline-block;
+.book-card span {
+  font-size: 1.5rem;
+}
+
+/*Form*/
+
+form {
+  border: 1px solid black;
+  width: 300px;
+  height: 400px;
+  padding: 15px;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  border-radius: 10px 25px;
+}
+form > h2 {
+  text-align: center;
+  font-size: 3rem;
+  margin: 25px 0;
+}
+form > div {
+  width: 100%;
+  display: flex;
+  margin-bottom: 15px;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+form label,
+form input {
+  font-size: 1.9rem;
+}
+form input {
+  width: 60%;
+}
+form > button {
+  width: 100px;
+  margin: 50px 75px; /*! arreglar mas tarde*/
 }
