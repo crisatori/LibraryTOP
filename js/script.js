@@ -3,27 +3,18 @@ const addBookBtn = document.querySelector("#addBookBtn");
 const submitBtn = document.querySelector("#submit-btn");
 const form = document.querySelector("form");
 let newBook;
+
 const myLibrary = [];
 
-function Book(bTitle, bAuthor, bPages, id) {
+function Book(bTitle, bAuthor, bPages) {
 	this.title = bTitle;
 	this.author = bAuthor;
 	this.pages = bPages;
-	this.id = id;
-	this.read = false;
-	this.isRead = function () {
-		this.read = !this.read;
+	//this.id = id;
+	this.readStatus = false;
+	this.changeReadStatus = function () {
+		this.readStatus = !this.readStatus;
 	};
-}
-
-function displayBooks(collection) {
-	bookShelf.innerHTML = "";
-	for (let i = 0; i < collection.length; i++) {
-		newBook = document.createElement("div");
-		newBook.className = "book-card";
-		newBook.innerHTML = `<div id="${collection[i].id}"><h2 class="book-title">Title:</h2><span class="title">${collection[i].title}</span></div><div><h2 class="book-author">Author:</h2><span class="author">${collection[i].author}</span></div><div><h2 class="book-no-pages">No. Pages:</h2><span class="no-pages">${collection[i].pages}</span><img src="assests/deconste.png" /></div>`;
-		bookShelf.appendChild(newBook);
-	}
 }
 
 function addBookToLibrary(title, author, pages) {
@@ -33,26 +24,20 @@ function addBookToLibrary(title, author, pages) {
 	displayBooks(myLibrary);
 }
 
-addBookToLibrary("El Principito", "Juan PB", 230);
-addBookToLibrary("El Gallo", "Soliz", 234);
-addBookToLibrary("Carlos Perez", "Ayddd", 230);
-
-submitBtn.addEventListener("click", function (e) {
-	const titleForm = form.querySelector("#title-form");
-	const authorForm = form.querySelector("#author-form");
-	const pagesForm = form.querySelector("#pages-form");
-	addBookToLibrary(titleForm.value, authorForm.value, pagesForm.value);
-	e.preventDefault();
+addBookBtn.addEventListener("click", function () {
+	if (form.style.display === "none") {
+		form.style.display = "block";
+	} else {
+		form.style.display = "none";
+	}
 });
 
-const allBooks = bookShelf.querySelectorAll(".book-card");
-allBooks.forEach((book) => {
-	book.addEventListener("click", function () {
-		const itSink = book.querySelector("div").id;
-		const r = myLibrary.findIndex((elemento) => {
-			return elemento.id === itSink;
-		});
-		myLibrary.splice(r, 1);
-		bookShelf.removeChild(book);
-	});
+form.addEventListener("submit", function (e) {
+	const bookTitle = document.querySelector("#title-form").value;
+	const bookAuthor = document.querySelector("#title-form").value;
+	const bookNoPages = document.querySelector("#title-form").value;
+	const newBook = new Book(bookTitle, bookAuthor, bookNoPages);
+	myLibrary.push(newBook);
+	console.log(myLibrary);
+	e.preventDefault();
 });

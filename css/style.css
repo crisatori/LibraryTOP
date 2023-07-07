@@ -82,8 +82,8 @@ form {
   height: 400px;
   padding: 15px;
   position: absolute;
-  right: 15px;
-  top: 15px;
+  right: 25px;
+  top: 25px;
   border-radius: 10px 25px;
 }
 form > h2 {
