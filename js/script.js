@@ -2,9 +2,12 @@ const bookShelf = document.querySelector(".book-shelf");
 const addBookBtn = document.querySelector("#addBookBtn");
 const submitBtn = document.querySelector("#submit-btn");
 const form = document.querySelector("form");
-let newBook;
 
 const myLibrary = [];
+
+if (!localStorage.getItem("library")) {
+	localStorage.setItem("library", JSON.stringify(myLibrary));
+}
 
 function Book(bTitle, bAuthor, bPages) {
 	this.title = bTitle;
@@ -33,11 +36,13 @@ addBookBtn.addEventListener("click", function () {
 });
 
 form.addEventListener("submit", function (e) {
+	e.preventDefault();
 	const bookTitle = document.querySelector("#title-form").value;
 	const bookAuthor = document.querySelector("#title-form").value;
 	const bookNoPages = document.querySelector("#title-form").value;
 	const newBook = new Book(bookTitle, bookAuthor, bookNoPages);
 	myLibrary.push(newBook);
 	console.log(myLibrary);
-	e.preventDefault();
+	form.style.display = "none";
+	form.reset();
 });
