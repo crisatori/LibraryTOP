@@ -1,6 +1,7 @@
 const addBookBtn = document.querySelector("#add-book-btn");
 const form = document.querySelector("#book-form");
 const main = document.getElementById("main");
+
 const myLibrary = [];
 
 function Book(title, author, pages, id, readStatus) {
@@ -85,7 +86,13 @@ form.addEventListener("submit", function (event) {
 	const authorFromForm = form.querySelector("#book-author").value;
 	const pagesFromForm = form.querySelector("#book-pages").value;
 	const id = myLibrary.length - 1 + 1;
-	const newBook = new Book(titleFromForm, authorFromForm, pagesFromForm, id, "READ");
+	const newBook = new Book(
+		titleFromForm,
+		authorFromForm,
+		pagesFromForm,
+		id,
+		"READ",
+	);
 	myLibrary.push(newBook);
 	event.preventDefault();
 	addBookToLibrary();
